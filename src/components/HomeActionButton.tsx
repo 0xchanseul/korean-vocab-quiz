@@ -9,7 +9,7 @@ interface HomeActionButtonProps {
 
 export function HomeActionButton({ icon, label, disabled = false, onClick }: HomeActionButtonProps) {
   return (
-    <button type="button" className="language-button" disabled={disabled} onClick={onClick}>
+    <button type="button" className="language-button home-action-button" disabled={disabled} onClick={onClick}>
       <span className="language-flag">{icon}</span>
       <span>{label}</span>
     </button>

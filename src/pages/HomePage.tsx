@@ -1,7 +1,9 @@
-import { BookPlus, Heart, Sparkles, Target } from 'lucide-react';
+import { BookPlus, Heart, Sparkles } from 'lucide-react';
 import { AppLogo } from '../components/AppLogo';
+import { CustomQuizIcon } from '../components/CustomQuizIcon';
 import { HomeActionButton } from '../components/HomeActionButton';
 import { LanguageButton } from '../components/LanguageButton';
+import { LanguageQuizIcon } from '../components/LanguageQuizIcon';
 import type { QuizLanguage } from '../types/quiz';
 
 interface HomePageProps {
@@ -36,14 +38,14 @@ export function HomePage({
         <div className="language-grid">
           <LanguageButton
             language="korean"
-            flag="🇰🇷"
+            icon={<LanguageQuizIcon language="korean" />}
             label="한국어"
             disabled={isLoading}
             onClick={onStartQuiz}
           />
           <LanguageButton
             language="norwegian"
-            flag="🇳🇴"
+            icon={<LanguageQuizIcon language="norwegian" />}
             label="노르웨이어"
             disabled={isLoading}
             onClick={onStartQuiz}
@@ -52,14 +54,14 @@ export function HomePage({
 
         <div className="language-grid">
           <HomeActionButton
-            icon={<Target size={26} aria-hidden="true" />}
-            label="커스텀 단어 퀴즈"
+            icon={<CustomQuizIcon />}
+            label="Egendefinert ordquiz"
             disabled={isLoading}
             onClick={onStartCustomQuiz}
           />
           <HomeActionButton
             icon={<BookPlus size={26} aria-hidden="true" />}
-            label="단어 추가"
+            label="Legg til ord"
             disabled={isLoading}
             onClick={onAddWord}
           />
@@ -67,7 +69,7 @@ export function HomePage({
       </div>
 
       <div className="tiny-note">
-        <Sparkles size={16} aria-hidden="true" />
+        <Sparkles size={12} aria-hidden="true" />
         10문제씩 가볍게, 오프라인에서도 말랑하게
       </div>
 

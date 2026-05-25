@@ -192,6 +192,10 @@ p {
   overflow-wrap: anywhere;
 }
 
+.home-action-button {
+  font-size: 18px;
+}
+
 .language-flag {
   display: inline-grid;
   place-items: center;
@@ -200,6 +204,100 @@ p {
   border-radius: 18px;
   background: var(--blue-50);
   font-size: 28px;
+}
+
+.language-quiz-icon {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--white);
+  border-radius: 16px 16px 16px 8px;
+  box-shadow: 0 8px 16px rgba(31, 111, 191, 0.14);
+}
+
+.language-quiz-icon-korean {
+  background: linear-gradient(145deg, #ffffff 0%, #e9f7ff 100%);
+}
+
+.language-quiz-icon-norwegian {
+  background: linear-gradient(145deg, #e7f6ff 0%, #ffffff 100%);
+}
+
+.language-quiz-icon::before {
+  position: absolute;
+  inset: 7px;
+  border-radius: 999px;
+  content: "";
+}
+
+.language-quiz-icon-korean::before {
+  background: linear-gradient(135deg, #ff7a8a 0 48%, #4aa6ff 52% 100%);
+}
+
+.language-quiz-icon-norwegian::before {
+  background:
+    linear-gradient(90deg, transparent 0 38%, var(--white) 38% 48%, #ff6b7a 48% 58%, var(--white) 58% 68%, transparent 68%),
+    linear-gradient(0deg, transparent 0 38%, var(--white) 38% 48%, #ff6b7a 48% 58%, var(--white) 58% 68%, transparent 68%),
+    #4aa6ff;
+}
+
+.language-quiz-bubble {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 11px;
+  background: var(--white);
+  color: var(--blue-700);
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.language-quiz-spark {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--blue-50);
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--blue-700);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.custom-quiz-icon {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 15px;
+  background: var(--white);
+  color: var(--blue-700);
+  line-height: 1;
+}
+
+.custom-quiz-book {
+  color: var(--blue-600);
+}
+
+.custom-quiz-pen {
+  position: absolute;
+  right: -4px;
+  bottom: -2px;
+  color: var(--green);
+  filter: drop-shadow(0 2px 0 var(--blue-50));
 }
 
 .language-button:hover,

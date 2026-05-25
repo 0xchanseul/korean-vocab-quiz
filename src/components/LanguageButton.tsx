@@ -1,15 +1,16 @@
 import { Languages } from 'lucide-react';
+import type { ReactNode } from 'react';
 import type { QuizLanguage } from '../types/quiz';
 
 interface LanguageButtonProps {
   language: QuizLanguage;
-  flag: string;
+  icon: ReactNode;
   label: string;
   disabled: boolean;
   onClick: (language: QuizLanguage) => void;
 }
 
-export function LanguageButton({ language, flag, label, disabled, onClick }: LanguageButtonProps) {
+export function LanguageButton({ language, icon, label, disabled, onClick }: LanguageButtonProps) {
   return (
     <button
       type="button"
@@ -17,7 +18,7 @@ export function LanguageButton({ language, flag, label, disabled, onClick }: Lan
       disabled={disabled}
       onClick={() => onClick(language)}
     >
-      <span className="language-flag">{flag}</span>
+      <span className="language-flag">{icon}</span>
       <span>{label}</span>
       <Languages size={22} aria-hidden="true" />
     </button>
