@@ -15,6 +15,22 @@ export class VocabularyQuizDatabase extends Dexie {
       quizHistories: '++id, score, language, playedAt',
       wrongAnswers: '++id, wordId, createdAt'
     });
+
+    this.version(2)
+      .stores({
+        words: '++id, &[korean+norwegian], korean, norwegian, category, level, source',
+        quizHistories: '++id, score, language, playedAt',
+        wrongAnswers: '++id, wordId, createdAt'
+      })
+      .upgrade(async (transaction) => {
+        await transaction
+          .table<Word, number>('words')
+          .toCollection()
+          .modify((word) => {
+            word.source = word.source ?? 'default';
+            word.updatedAt = word.updatedAt ?? new Date().toISOString();
+          });
+      });
   }
 }
 

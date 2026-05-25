@@ -1,4 +1,5 @@
 export type WordLevel = 'easy' | 'medium' | 'hard';
+export type WordSource = 'default' | 'custom';
 
 export interface Word {
   id?: number;
@@ -6,6 +7,7 @@ export interface Word {
   norwegian: string;
   category: string;
   level: WordLevel;
+  source: WordSource;
   createdAt: string;
   updatedAt: string;
 }

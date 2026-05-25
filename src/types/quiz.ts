@@ -1,10 +1,17 @@
 export type QuizLanguage = 'korean' | 'norwegian';
+export type CustomQuizDirection = 'learnKorean' | 'learnNorwegian';
 
 export interface QuizQuestion {
   wordId: number;
   prompt: string;
   correctAnswer: string;
   choices: string[];
+}
+
+export interface CustomQuizQuestion {
+  wordId: number;
+  prompt: string;
+  correctAnswer: string;
 }
 
 export interface QuizHistory {

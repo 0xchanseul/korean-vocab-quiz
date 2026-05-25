@@ -1,5 +1,6 @@
-import { Heart, Sparkles } from 'lucide-react';
+import { BookPlus, Heart, Sparkles, Target } from 'lucide-react';
 import { AppLogo } from '../components/AppLogo';
+import { HomeActionButton } from '../components/HomeActionButton';
 import { LanguageButton } from '../components/LanguageButton';
 import type { QuizLanguage } from '../types/quiz';
 
@@ -7,9 +8,17 @@ interface HomePageProps {
   isLoading: boolean;
   errorMessage: string | null;
   onStartQuiz: (language: QuizLanguage) => void;
+  onStartCustomQuiz: () => void;
+  onAddWord: () => void;
 }
 
-export function HomePage({ isLoading, errorMessage, onStartQuiz }: HomePageProps) {
+export function HomePage({
+  isLoading,
+  errorMessage,
+  onStartQuiz,
+  onStartCustomQuiz,
+  onAddWord
+}: HomePageProps) {
   return (
     <section className="home-page">
       <AppLogo />
@@ -23,21 +32,38 @@ export function HomePage({ isLoading, errorMessage, onStartQuiz }: HomePageProps
         <p>오늘은 어느 방향으로 단어를 맞혀볼까요?</p>
       </div>
 
-      <div className="language-grid" aria-label="퀴즈 언어 선택">
-        <LanguageButton
-          language="korean"
-          flag="🇰🇷"
-          label="한국어"
-          disabled={isLoading}
-          onClick={onStartQuiz}
-        />
-        <LanguageButton
-          language="norwegian"
-          flag="🇳🇴"
-          label="노르웨이어"
-          disabled={isLoading}
-          onClick={onStartQuiz}
-        />
+      <div className="home-actions" aria-label="퀴즈 메뉴">
+        <div className="language-grid">
+          <LanguageButton
+            language="korean"
+            flag="🇰🇷"
+            label="한국어"
+            disabled={isLoading}
+            onClick={onStartQuiz}
+          />
+          <LanguageButton
+            language="norwegian"
+            flag="🇳🇴"
+            label="노르웨이어"
+            disabled={isLoading}
+            onClick={onStartQuiz}
+          />
+        </div>
+
+        <div className="language-grid">
+          <HomeActionButton
+            icon={<Target size={26} aria-hidden="true" />}
+            label="커스텀 단어 퀴즈"
+            disabled={isLoading}
+            onClick={onStartCustomQuiz}
+          />
+          <HomeActionButton
+            icon={<BookPlus size={26} aria-hidden="true" />}
+            label="단어 추가"
+            disabled={isLoading}
+            onClick={onAddWord}
+          />
+        </div>
       </div>
 
       <div className="tiny-note">

@@ -36,9 +36,12 @@ npm run build
 - 보기 순서 랜덤
 - 중복 출제 방지
 - 점수 계산
+- 사용자 커스텀 단어 추가
+- 커스텀 단어 전용 서술형 입력 퀴즈
+- 오답 시 `Vis svaret` 클릭 전까지 정답 숨김
 - 오답 시 정답 표시 후 수동으로 다음 문제 이동
 - 결과 화면, 다시 시작, 초기 화면 이동
-- 첫 실행 시 쉬운 단어 100개 seed
+- 첫 실행 시 쉬운 기본 단어 seed
 - IndexedDB 중복 저장 방지
 - PWA manifest, offline fallback, 앱 아이콘 포함
 
@@ -75,6 +78,13 @@ IndexedDB / Dexie
 
 추후 Spring Boot + MariaDB 백엔드로 확장할 때는 repository 계층의 Dexie 구현을 API 호출 구현으로 교체하는 방향을 의도했습니다. 관련 파일에 `TODO: future backend integration` 주석이 있습니다.
 
+기본 단어와 직접 추가한 단어는 `source` 필드로 구분합니다.
+
+- `default`: 앱에서 제공하는 기본 단어
+- `custom`: 사용자가 단어 추가 화면에서 저장한 단어
+
+일반 객관식 퀴즈는 `default` 단어를 사용하고, 커스텀 단어 퀴즈는 `custom` 단어만 사용합니다.
+
 ## 데이터 모델
 
 ### Word
@@ -84,6 +94,7 @@ IndexedDB / Dexie
 - norwegian
 - category
 - level
+- source
 - createdAt
 - updatedAt
 

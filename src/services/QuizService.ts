@@ -1,5 +1,11 @@
 import { quizRepository } from '../repositories/QuizRepository';
-import type { QuizLanguage, QuizQuestion, QuizResult } from '../types/quiz';
+import type {
+  CustomQuizDirection,
+  CustomQuizQuestion,
+  QuizLanguage,
+  QuizQuestion,
+  QuizResult
+} from '../types/quiz';
 import type { Word } from '../types/word';
 import { shuffle } from '../utils/shuffle';
 import { wordService } from './WordService';
@@ -18,6 +24,13 @@ export class QuizService {
     const selectedWords = shuffle(words).slice(0, QUESTION_COUNT);
 
     return selectedWords.map((word) => this.toQuestion(word, words, language));
+  }
+
+  async createCustomQuizSet(direction: CustomQuizDirection): Promise<CustomQuizQuestion[]> {
+    const words = await wordService.getCustomWords();
+    const selectedWords = shuffle(words).slice(0, Math.min(QUESTION_COUNT, words.length));
+
+    return selectedWords.map((word) => this.toCustomQuestion(word, direction));
   }
 
   async recordResult(result: QuizResult): Promise<void> {
@@ -62,6 +75,18 @@ export class QuizService {
       prompt,
       correctAnswer,
       choices: shuffle([correctAnswer, ...distractors])
+    };
+  }
+
+  private toCustomQuestion(word: Word, direction: CustomQuizDirection): CustomQuizQuestion {
+    if (!word.id) {
+      throw new Error('저장된 단어 id를 찾을 수 없어요.');
+    }
+
+    return {
+      wordId: word.id,
+      prompt: direction === 'learnKorean' ? word.norwegian : word.korean,
+      correctAnswer: direction === 'learnKorean' ? word.korean : word.norwegian
     };
   }
 }

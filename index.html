@@ -15,6 +15,21 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if (
+        'serviceWorker' in navigator &&
+        ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
+      ) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          registrations.forEach((registration) => registration.unregister());
+
+          if (navigator.serviceWorker.controller && !sessionStorage.getItem('dev-sw-cleaned')) {
+            sessionStorage.setItem('dev-sw-cleaned', 'true');
+            window.location.reload();
+          }
+        });
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
